@@ -11,19 +11,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class CoursesController : Controller
+    public class InstructorsController : Controller
     {
-        ICourseService _courseService;
+        IInstructorService _instructorService;
 
-        public CoursesController(ICourseService courseService)
+        public InstructorsController(IInstructorService instructorService)
         {
-            _courseService = courseService;
+            _instructorService = instructorService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _courseService.GetAll();
+            var result = _instructorService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _courseService.GetById(id);
+            var result = _instructorService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -43,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Course course)
+        public IActionResult Add(Instructor instructor)
         {
-            var result = _courseService.Add(course);
+            var result = _instructorService.Add(instructor);
             if (result.Success)
             {
                 return Ok(result);
@@ -54,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(Course course)
+        public IActionResult Update(Instructor instructor)
         {
-            var result = _courseService.Update(course);
+            var result = _instructorService.Update(instructor);
             if (result.Success)
             {
                 return Ok(result);
@@ -65,9 +65,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Course course)
+        public IActionResult Delete(Instructor instructor)
         {
-            var result = _courseService.Delete(course);
+            var result = _instructorService.Delete(instructor);
             if (result.Success)
             {
                 return Ok(result);
