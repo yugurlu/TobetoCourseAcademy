@@ -1,6 +1,7 @@
 ﻿using Business.Abstracts;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstracts;
@@ -25,9 +26,9 @@ namespace Business.Concretes
 			_courseDal = courseDal;
 		}
 
+		[ValidationAspect(typeof(CourseValidator))]
 		public IResult Add(Course course)
 		{
-            ValidationTool.Validate(new CourseValidator(), course);
 			_courseDal.Add(course);
 			return new SuccessResult(Messages.CategoryAdded);
 		}
