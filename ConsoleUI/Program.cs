@@ -6,10 +6,11 @@ using Entities.Concretes;
 #region Course
             Course course1 = new Course
             {
+                CategoryId = 1,
                 Description = "test",
                 ImageUrl = "test",
-                Name = "C#",
-                Price = 35
+                Name = "#",
+                Price = 0,
             };
             Course course2 = new Course
             {
@@ -48,10 +49,11 @@ using Entities.Concretes;
 
 CourseManager courseManager = new CourseManager(new EfCourseDal());
 
-var value = courseManager.GetAll();
-foreach (var item in value.Data)
-{
-    Console.WriteLine(item.Name + " " + item.Description);
-}
+var value = courseManager.Add(course1);
+Console.WriteLine(value.Message);
+//foreach (var item in value.Data)
+//{
+//    Console.WriteLine(item.Name + " " + item.Description);
+//}
 
 Console.ReadKey();

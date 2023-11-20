@@ -29,6 +29,11 @@ namespace Core.Aspects.Autofac.Validation
                 ValidationTool.Validate(validator, entity);
             }
         }
+
+        protected override void OnAfter(IInvocation invocation)
+        {
+            throw new System.Exception("this is onAfter exception!");
+        }
     }
 }
 
