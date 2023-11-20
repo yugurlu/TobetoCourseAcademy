@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes
 {
-    public class Course:IEntity
+    public class Course : IEntity
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
@@ -16,7 +16,7 @@ namespace Entities.Concretes
         public double Price { get; set; }
         public string? ImageUrl { get; set; }
         public Category? Category { get; set; }
-        public CourseInstructor[]? GetCourseInstructor { get; set; }
+        public CourseInstructor[]? CourseInstructor { get; set; }
 
     }
 }

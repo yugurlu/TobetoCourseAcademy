@@ -8,7 +8,7 @@ using Entities.Concretes;
 
 namespace Business.Concretes
 {
-    public class InstructorManager:IInstructorService
+    public class InstructorManager : IInstructorService
     {
         IInstructorDal _instructorDal;
         public InstructorManager(IInstructorDal instructorDal)

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concretes.EntityFramework
 {
-    public class EfCourseDal :EfEntityRepositoryBase<Course,KodlamaIoContext>,ICourseDal
+    public class EfCourseDal : EfEntityRepositoryBase<Course,KodlamaIoContext>,ICourseDal
     {
       
 

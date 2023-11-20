@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
-    public class CategoryManager:ICategoryService
+    public class CategoryManager : ICategoryService
     {
         ICategoryDal _categoryDal;
         public CategoryManager(ICategoryDal categoryDal)
