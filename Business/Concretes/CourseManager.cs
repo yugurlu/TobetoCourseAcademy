@@ -3,6 +3,7 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
@@ -21,14 +22,21 @@ namespace Business.Concretes
 	public class CourseManager : ICourseService
 	{
 		ICourseDal _courseDal;
-		public CourseManager(ICourseDal courseDal)
+		ICategoryService _categoryService;
+		public CourseManager(ICourseDal courseDal, ICategoryService categoryService)
 		{
 			_courseDal = courseDal;
+			_categoryService = categoryService;
 		}
 
 		[ValidationAspect(typeof(CourseValidator))]
 		public IResult Add(Course course)
 		{
+			var result = BusinessRules.Run(CheckIfCourseNameExists(course.Name), CheckIfProductCountOfCategoryCorrect(course.CategoryId));
+			if (result != null)
+			{
+				return result;
+			}
 			_courseDal.Add(course);
 			return new SuccessResult(Messages.CategoryAdded);
 		}
@@ -57,7 +65,7 @@ namespace Business.Concretes
 
 		public IDataResult<List<CourseDetail>>  GetDetails()
 		{
-			if (DateTime.Now.Hour==17)
+			if (DateTime.Now.Hour == 17)
 			{
 				return new SuccessDataResult<List<CourseDetail>>(_courseDal.GetDetails());
 			}
@@ -73,6 +81,25 @@ namespace Business.Concretes
 		{
 			return new SuccessDataResult<List<Course>>(_courseDal.GetAll(p => p.CategoryId==categoryId));
 		}
-	}
- 
+
+		private IResult CheckIfCourseNameExists(string courseName)
+		{
+			var result = _courseDal.GetAll(p => p.Name == courseName).Any();
+			if (result)
+			{
+				return new ErrorResult("course already added!");
+			}
+			return new SuccessResult();
+		}
+
+		private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
+		{
+			var result = _courseDal.GetAll(p => p.CategoryId == categoryId).Count;
+			if (result >= 15)
+			{
+				return new ErrorResult();
+			}
+			return new SuccessResult();
+		}
+    }
 }

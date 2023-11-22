@@ -20,6 +20,7 @@
     <None Remove="Aspects\" />
     <None Remove="Aspects\Autofac\" />
     <None Remove="Aspects\Autofac\Validation\" />
+    <None Remove="Utilities\Business\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CrossCuttingConcerns\" />
@@ -28,5 +29,6 @@
     <Folder Include="Aspects\" />
     <Folder Include="Aspects\Autofac\" />
     <Folder Include="Aspects\Autofac\Validation\" />
+    <Folder Include="Utilities\Business\" />
   </ItemGroup>
 </Project>

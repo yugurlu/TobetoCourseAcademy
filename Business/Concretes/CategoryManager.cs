@@ -1,5 +1,7 @@
 ﻿using Business.Abstracts;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
@@ -20,6 +22,7 @@ namespace Business.Concretes
             _categoryDal = categoryDal;
         }
 
+        [ValidationAspect(typeof(CourseValidator))]
         public IResult Add(Category category)
         {
             _categoryDal.Add(category);

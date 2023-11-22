@@ -1,5 +1,7 @@
 ﻿using Business.Abstracts;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
@@ -15,6 +17,8 @@ namespace Business.Concretes
         {
             _instructorDal = instructorDal;
         }
+
+        [ValidationAspect(typeof(InstructorValidator))]
         public IResult Add(Instructor instructor)
         {
             _instructorDal.Add(instructor);
