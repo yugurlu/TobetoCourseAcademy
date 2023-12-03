@@ -1,4 +1,5 @@
-﻿using Business.Concretes;
+﻿using Business.Abstracts;
+using Business.Concretes;
 using DataAccess.Concretes.EntityFramework;
 using Entities.Concretes;
 
@@ -47,13 +48,13 @@ using Entities.Concretes;
 
 //Kurs Ve Eğitmen İlişkileri
 
-CourseManager courseManager = new CourseManager(new EfCourseDal());
+//CourseManager courseManager = new CourseManager(new EfCourseDal(), new CategoryManager());
 
-var value = courseManager.Add(course1);
-Console.WriteLine(value.Message);
+//var value = courseManager.Add(course1);
+//Console.WriteLine(value.Message);
 //foreach (var item in value.Data)
 //{
 //    Console.WriteLine(item.Name + " " + item.Description);
 //}
 
-Console.ReadKey();
+//Console.ReadKey();
